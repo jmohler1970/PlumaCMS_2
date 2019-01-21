@@ -1,8 +1,8 @@
 {
-	"dependencies":{
-	    "taffy":"git://github.com/atuttle/Taffy.git"
-	},
-	"installPaths":{
-	    "taffy":"taffy/",
-	}
- }
+    "dependencies":{
+        "taffy":"git://github.com/atuttle/Taffy.git"
+    },
+    "installPaths":{
+        "taffy":"taffy"
+    }
+}
