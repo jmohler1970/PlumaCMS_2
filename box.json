@@ -1,8 +1,10 @@
 {
     "dependencies":{
-        "taffy":"git://github.com/atuttle/Taffy.git"
+        "taffy":"git://github.com/atuttle/Taffy.git",
+        "i18n":"git://github.com/jmohler1970/i18n.git"
     },
     "installPaths":{
-        "taffy":"taffy"
+        "taffy":"taffy/",
+        "i18n":"i18n"
     }
 }

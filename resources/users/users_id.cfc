@@ -7,12 +7,10 @@ function get(required numeric id) {
 	if (isNull(User))	{
 		return rep({
 			'message' : {'type' : 'error', 'content' : '<b>Error:</b> Unable to find User.'},
-			'time' : GetHttpTimeString(now())
 			}).withStatus(401);
 	}
 
 	return rep({
-			'time' : GetHttpTimeString(now()),
 			'data' :	{
 				"id"			: User.getId(),	
 				"firstName" 	: User.getFirstName(),
@@ -35,7 +33,6 @@ function put(required numeric id,
 	if (isNull(User))	{
 		return rep({
 			'message' : {'status' : 'error', 'content' : '<b>Error:</b> Unable to find User.' },
-			'time' : GetHttpTimeString(now())
 			}).withStatus(401);
 	}
 
@@ -47,7 +44,6 @@ function put(required numeric id,
 	if (!isNull(TestUser) && TestUser.getID() != arguments.id) {
 		return rep({
 			'message' : {'status' : 'error', 'content' : '<b>Error:</b> Email / Password combination has already been taken.' },
-			'time' : GetHttpTimeString(now()),
 			'data' : {}
 			}).withStatus(401);
 	}
@@ -66,7 +62,6 @@ function put(required numeric id,
 
 	return rep({
 		'message' : {'type' : 'success', 'content' : '<b>Success:</b> User has been saved.'},
-		'time' : GetHttpTimeString(now())
 		}).withStatus(201);
 }
 
@@ -85,7 +80,6 @@ function delete(required numeric id){
 
 	return rep({
 		'message' : {'type' : 'success', 'content' : '<b>Success:</b> User has been deleted.'},
-		'time' : GetHttpTimeString(now()),
 		'data' : {}
 		});
 	}

@@ -15,7 +15,6 @@ function get(){
 			});
 		}
 	return rep({
-		'time' : GetHttpTimeString(now()),
 		'data' : Result
 		});
 	}
@@ -32,7 +31,6 @@ function post(
 	if (arguments.password == "") {
 		return rep({
 			'message' : {'type' : 'error', 'content' : '<b>Error:</b> Password is required and must not be blank.'},
-			'time' : GetHttpTimeString(now())
 			}).withStatus(401);
 		}
 
@@ -41,7 +39,6 @@ function post(
 	if (!isNull(TestUser)) {
 		return rep({
 			'message' : {'type' : 'error', 'content' : '<b>Error:</b> Email / Password combination has already been taken.'},
-			'time' : GetHttpTimeString(now()),
 			'data' : {}
 			}).withStatus(401);
 		}
@@ -58,7 +55,6 @@ function post(
 
 	return rep({
 		'message' : {'type' : 'success', 'content' : '<b>Success:</b> User has been created.'},
-		'time' : GetHttpTimeString(now())
 		});
 	}
 

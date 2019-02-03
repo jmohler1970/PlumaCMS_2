@@ -12,7 +12,7 @@ function get() {
 
 	return rep({
 		'message' : {
-			'type' : 'success', 
+			'type' : 'success'
 			},
 		'data' : settings
 		});
@@ -35,7 +35,7 @@ function put(required struct settings) {
 
 	return rep({
 		'message' : {
-			'type' : 'success', 
+			'type' : 'success'
 			}
 	});	
 

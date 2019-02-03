@@ -1,12 +1,12 @@
 component extends="taffy.core.api"  {
 
-this.name = "Pluma2";
+this.name = "PlumaCMS";
 this.applicationTimeout 		= createTimeSpan(0, 4, 0, 0);
 this.applicationManagement 	= true;
 
 this.ormenabled = true;
 this.ormsettings.eventhandling = true;
-this.datasource = "Pluma2";
+this.datasource = "PlumaCMS";
 
 variables.framework.docs.APIName = "PlumaCMS REST";
 variables.framework.docs.APIVersion = "2.0.0";
@@ -17,6 +17,9 @@ this.mappings['/taffy'] 		= expandPath('./taffy');
 function onApplicationStart() output="false"	{
 
 	final application.Config = DeserializeJSON(FileRead(expandPath("./config.json"))); // If config.json is invalid, you are in big trouble
+
+	application.i18n = new i18n.i18n();
+	application.i18n.setupRequest(); // Can't remember why I called it that.
 
 	return super.onApplicationStart();
 	}
@@ -79,9 +82,8 @@ function onTaffyRequest(verb, cfc, requestArguments, mimeExt, headers, methodMet
 
 	// We only track traffic on valid requests
 
-	if (!application.config.Traffic.NotRequired.findNoCase(arguments.matchedURI) {
+	if (!application.config.Traffic.NotRequired.findNoCase(arguments.matchedURI)) {
 		invoke("services.traffic", "add", {endpoint : arguments.matchedURI, verb : arguments.verb});
-
 	}
 
 	return true;

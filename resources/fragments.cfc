@@ -12,15 +12,32 @@ function get() {
 
 	return rep({
 		'message' : {
-			'type' : 'success', 
+			'type' : 'success'
 			},
 		'data' : fragments
 		});
 
 }
 
-function put() {
+function put(required string key, required string value) {
 
+	var fragment = EntityLoadByPK("Fragments", arguments.key);
+
+	if(isNull(fragment))	{
+		fragment = EntityNew("Fragments", {key : arguments.key, value : arguments.value});
+	}
+	else	{
+		fragment.setValue(arguments.value);
+	}
+	EntitySave(fragment);
+
+
+	return rep({
+		'message' : {
+			'type' : 'success'
+			},
+		'data' : fragments
+		});
 
 }
 
