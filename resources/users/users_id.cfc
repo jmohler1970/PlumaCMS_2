@@ -6,7 +6,7 @@ function get(required numeric id) {
 
 	if (isNull(User))	{
 		return rep({
-			'message' : {'type' : 'error', 'content' : '<b>Error:</b> Unable to find User.'},
+			'message' : {'type' : 'error', 'content' : '<b>Error:</b> Unable to find User.'}
 			}).withStatus(401);
 	}
 
@@ -32,7 +32,7 @@ function put(required numeric id,
 
 	if (isNull(User))	{
 		return rep({
-			'message' : {'status' : 'error', 'content' : '<b>Error:</b> Unable to find User.' },
+			'message' : {'status' : 'error', 'content' : '<b>Error:</b> Unable to find User.' }
 			}).withStatus(401);
 	}
 
@@ -61,7 +61,7 @@ function put(required numeric id,
 	EntitySave(User);
 
 	return rep({
-		'message' : {'type' : 'success', 'content' : '<b>Success:</b> User has been saved.'},
+		'message' : {'type' : 'success', 'content' : '<b>Success:</b> User has been saved.'}
 		}).withStatus(201);
 }
 
@@ -83,6 +83,5 @@ function delete(required numeric id){
 		'data' : {}
 		});
 	}
-
-
 }
+

@@ -6,10 +6,10 @@
 		},
 	"hash_algorithm" 	: "SHA-384",
 	"token" : { 
-		"NotRequired" : ["/about","/login", "/login/captcha"],
+		"NotRequired" : ["/about", "/lang", "/login", "/login/captcha"],
 		"Expiration" : 60
 		},
 	"traffic" : { 
-		"NotRequired" : ["/about","/login", "/login/captcha"]
+		"NotRequired" : ["/about", "/login", "/login/captcha"]
 		}
 }

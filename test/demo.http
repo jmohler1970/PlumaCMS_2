@@ -1,0 +1,16 @@
+@host = http://localhost:8050/index.cfm?endpoint=
+@apiKey = pacificcoast
+
+###
+get {{host}}/about  HTTP/1.1
+apiKey: {{apiKey}}
+
+
+###
+get {{host}}/lang  HTTP/1.1
+apiKey: {{apiKey}}
+
+###
+get {{host}}/login/captcha  HTTP/1.1
+apiKey: {{apiKey}}
+

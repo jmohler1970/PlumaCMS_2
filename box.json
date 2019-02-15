@@ -5,6 +5,6 @@
     },
     "installPaths":{
         "taffy":"taffy/",
-        "i18n":"i18n"
+        "i18n":"i18n/"
     }
 }

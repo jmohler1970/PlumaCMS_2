@@ -30,7 +30,7 @@ function post(
 
 	if (arguments.password == "") {
 		return rep({
-			'message' : {'type' : 'error', 'content' : '<b>Error:</b> Password is required and must not be blank.'},
+			'message' : {'type' : 'error', 'content' : '<b>Error:</b> Password is required and must not be blank.'}
 			}).withStatus(401);
 		}
 
@@ -54,7 +54,7 @@ function post(
 	ORMFlush();
 
 	return rep({
-		'message' : {'type' : 'success', 'content' : '<b>Success:</b> User has been created.'},
+		'message' : {'type' : 'success', 'content' : '<b>Success:</b> User has been created.'}
 		});
 	}
 
