@@ -2,7 +2,7 @@
 	"apikey" 			: "pacificcoast",
 	"CAPTCHA" 		: {
 		"slices" : [2,2,2],
-		"data" : "SchrodingersCatCopenhagenInterpretation9675283104@$%&*"
+		"data" : "MississippiRiver"
 		},
 	"hash_algorithm" 	: "SHA-384",
 	"token" : { 
