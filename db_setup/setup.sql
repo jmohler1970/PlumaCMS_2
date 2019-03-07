@@ -42,9 +42,9 @@ CREATE TABLE [dbo].[users](
 	[FirstName] [varchar](50) NOT NULL,
 	[LastName] [varchar](50) NOT NULL,
 	[Email] [varchar](80) NOT NULL,
-	[Passhash] [varchar](32), 
-	[LoginToken] [varchar](32),
-	[LoginCreateDate] [datetime],
+	[Passhash] [varchar](96), 
+	[LoginToken] [varchar](96),
+	[TokenCreateDate] [datetime],
 	[Deleted] [bit] NOT NULL,
 	CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([ID] ASC)
 )
