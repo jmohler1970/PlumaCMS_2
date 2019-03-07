@@ -19,6 +19,10 @@ void function setPassword(required string password)	{
 
 boolean function validatePassword(required string password)	{
 
+	if (isnull(this.getPasshash())){
+		return true;
+	}
+
 	return this.getPasshash() == hash(arguments.password, application.Config.hash_algorithm);
 	}
 }
