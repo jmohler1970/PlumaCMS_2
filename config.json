@@ -9,7 +9,8 @@
 		"NotRequired" : ["/about", "/lang", "/login", "/login/captcha"],
 		"Expiration" : 60
 		},
-	"traffic" : { 
-		"NotRequired" : ["/about", "/login", "/login/captcha"]
+	"traffic" : {
+		"TZOffset"	: -8,
+		"NotRequired" 	: ["/traffic/details","/traffic/filters","/traffic/projection","/traffic/summary","/traffic/top"]
 		}
 }

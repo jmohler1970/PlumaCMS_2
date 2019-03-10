@@ -14,9 +14,9 @@ function post(required string email, required string password, required string c
 	
 	if (hash(arguments.captcha, application.Config.hash_algorithm) != arguments.captcha_hash)	{
 		return rep({
-			"message" : { 'type' : 'error', 'content' : 'CAPTCHA failed' },
+			"message" : { 'type' : 'error', 'content' : '<b>Error:</b> CAPTCHA failed' },
 			'data' : ""
-			}).withStatus(404);
+			});
 		}
 
 	// hoping for an array with one element
