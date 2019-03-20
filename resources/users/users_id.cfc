@@ -65,7 +65,10 @@ function put(required numeric id,
 		}).withStatus(201);
 }
 
-
+/**
+* @hint Deletes a user
+* @id ID of user being deleted
+*/
 function delete(required numeric id){
 
 	var User = EntityLoadByPK("Users", arguments.id);

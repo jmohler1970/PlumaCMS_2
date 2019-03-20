@@ -1,7 +1,7 @@
 component extends="taffy.core.resource" taffy_uri="/lang" {
 
 
-function get() {
+function get() hint="All of the languages currently supported by the system" {
 
 	var arLang = application.i18n.getLang();
 	arLang.each(

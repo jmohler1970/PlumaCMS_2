@@ -8,6 +8,8 @@ this.ormenabled = true;
 this.ormsettings.eventhandling = true;
 this.datasource = "PlumaCMS";
 
+this.passarraybyreference = true;
+
 variables.framework.docs.APIName = "PlumaCMS REST";
 variables.framework.docs.APIVersion = "2.0.0";
 
@@ -29,23 +31,20 @@ function onTaffyRequest(verb, cfc, requestArguments, mimeExt, headers, methodMet
 
 	if(!arguments.headers.keyExists("apiKey")){
 		return rep({
-			'message' : { 'type' 	: 'error', 'content' : '<b>Error:</b> Missing header apiKey.' },
-			'time' 	: GetHttpTimeString(now())
+			'message' : { 'type' 	: 'error', 'content' : '<b>Error:</b> Missing header apiKey.' }
 			}).withStatus(401);
 	}
 
 	if (arguments.headers.apiKey != application.Config.apiKey) {
 		return rep({
-			'message' : {'type' 	: 'error', 'content' :  '<b>Error:</b> apiKey is invalid.'},
-			'time' 	: GetHttpTimeString(now())
+			'message' : {'type' 	: 'error', 'content' :  '<b>Error:</b> apiKey is invalid.'}
 			}).withStatus(401);
 	}
 
 	// I need a login token and I don't have it.
 	if (!application.config.Token.NotRequired.findNoCase(arguments.matchedURI) && !arguments.headers.keyExists("authorization"))	{
 		return rep({
-			'message' : {'type' 	: 'error', 'content' : '<b>Error:</b> You must provide an authorization header to perform this operation.' },
-			'time' 	: GetHttpTimeString(now())
+			'message' : {'type' 	: 'error', 'content' : '<b>Error:</b> You must provide an authorization header to perform this operation.' }
 			}).withStatus(403);
 	}
 
@@ -57,25 +56,22 @@ function onTaffyRequest(verb, cfc, requestArguments, mimeExt, headers, methodMet
 		// I need a login token and I don't have it.
 		if (arguments.headers.authorization == "" || listfirst(arguments.headers.authorization, " ") != "bearer")	{
 		return rep({
-			'message' : {'type' 	: 'error', 'content' : '<b>Error:</b> You must provide a authorization header that is not blank and starts with Bearer.' },
-			'time' 	: GetHttpTimeString(now())
+			'message' : {'type' 	: 'error', 'content' : '<b>Error:</b> You must provide a authorization header that is not blank and starts with Bearer.' }
 			}).withStatus(403);
 		}
 
-		var Login = EntityLoad("Users", { loginToken : listrest(arguments.headers.authorization, " ") }, true);
+		request.User = EntityLoad("Users", { loginToken : listrest(arguments.headers.authorization, " ") }, true);
 
-		if (isNull(Login))	{
+		if (isNull(request.User))	{
 			return rep({
-				'message' : {'type' 	: 'error', 'content' : '<b>Error:</b> You must provide a authorization that is valid.' },
-				'time' 	: GetHttpTimeString(now())
+				'message' : {'type' 	: 'error', 'content' : '<b>Error:</b> You must provide a authorization that is valid.' }
 				}).withStatus(401);
 		}
 
 		// comparing my minutes
-		if (Login.getTokenCreateDate().add("n", application.config.Token.Expiration).compare(now(), "n") < 0 )	{
+		if (request.User.getTokenCreateDate().add("n", application.config.Token.Expiration).compare(now(), "n") < 0 )	{
 			return rep({
-				'message' : {'type' 	: 'error', 'content' : '<b>Error:</b> Your token has expired. Login again.'},
-				'time' 	: GetHttpTimeString(now())
+				'message' : {'type' 	: 'error', 'content' : '<b>Error:</b> Your token has expired. Login again.'}
 				}).withStatus(403);
 		}
 	}

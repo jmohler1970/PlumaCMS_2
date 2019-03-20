@@ -1,5 +1,8 @@
 component extends="taffy.core.resource" taffy_uri="/users" {
 
+/**
+* @hint Return completes set of users order by id
+*/
 function get(){
 
 	var Users = EntityLoad("Users", {}, "ID")
@@ -19,13 +22,14 @@ function get(){
 		});
 	}
 
-
+/**
+* @hint Add a new user
+*/
 function post(
 	required string firstname, 
 	required string lastname,
 	required string email,
-	required string password,
-	required string stateprovinceid
+	required string password
 	) {
 
 	if (arguments.password == "") {

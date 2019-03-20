@@ -1,8 +1,11 @@
 component extends="taffy.core.resource" taffy_uri="/login/captcha" {
 
 
-
-function get(string complexity = "low") {
+/**
+* @hint Create captcha image
+* @complexity This goes into ImapeCreateCaptcha(). This can get strange very fast. 
+*/
+function get(string complexity = "low")  {
 
 	var CAPTCHAConf = application.Config.CAPTCHA;
 
@@ -32,8 +35,13 @@ function get(string complexity = "low") {
 		});
 }
 
-// This is just for testing purposes
-function post(required string captcha, required string captcha_hash) hint="verifies results. It is more common to tied this in with contactus or resetpassword" {
+
+/**
+* @hint Verifies results. It is more common to tied this in with contactus or resetpassword
+* @captcha This is what the user thinks is the captcha string.
+* @captcha_hash This is the known hash of the string. We never push a plain-text version of the captcha because that would defeat the purpose of captcha.
+*/
+function post(required string captcha, required string captcha_hash) hint="" {
 
 	if (hash(arguments.captcha, application.Config.hash_algorithm) != arguments.captcha_hash)	{
 		return rep({

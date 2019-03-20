@@ -33,13 +33,18 @@ function put(required struct settings) {
 		EntitySave(setting);
 	}
 
-	return rep({
-		'message' : {
-			'type' : 'success'
-			}
-	});	
+	return this.get();
 
 }
 
+/**
+* @hint Remove setting.  Entire set of settings is returned because we are expecting instant response.
+*/
+function delete(required string key) {
+
+	EntityDelete(EntityLoadByPK("Settings", arguments.key));
+
+	return this.get();
+}
 
 } // end component

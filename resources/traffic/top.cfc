@@ -1,6 +1,8 @@
 component extends="taffy.core.resource" taffy_uri="/traffic/top" {
 
-
+/**
+* @hint Top pages for a day broken down by hour. Top for month broken down by day. Top for year broken down by month
+*/
 function get(string datetype = "year", string filterdate = "", string filterEndpoint = "" ) {
 
 	if (!isDate(arguments.filterdate) || argumens.filterdate == "")	{

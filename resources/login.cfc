@@ -1,7 +1,14 @@
 component extends="taffy.core.resource" taffy_uri="/login" {
 
 // make sure this function goes away. It only exists to setup initial user in DB
-function put(required string password)	{
+function put(required string password) hint="For a given password, this will create the hash of the password. This is good to get the system up and running"	{
+
+	if(!isNull(EntityLoad("Users")))	{
+		return rep({
+			'message' : {'type' 	: 'error', 'content' : '<b>Error:</b> User is already present.'}
+			}).withStatus(403);
+	}
+	
 	return rep({
 		'message' : { 'type' : 'success' },
 		"data" : hash(arguments.password, application.Config.hash_algorithm)
@@ -9,7 +16,7 @@ function put(required string password)	{
 }
 
 
-function post(required string email, required string password, required string captcha, required string captcha_hash){
+function post(required string email, required string password, required string captcha, required string captcha_hash) hint="Normal login operation" {
 
 	
 	if (hash(arguments.captcha, application.Config.hash_algorithm) != arguments.captcha_hash)	{
